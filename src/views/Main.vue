@@ -77,6 +77,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100%;
+  color: #063291;
 }
 
 .centered-content {

@@ -38,6 +38,7 @@ body {
 </style>
 
 <script>
+const execSync = require('child_process')
 export default {
     name: 'graph',
     data() {
@@ -55,15 +56,6 @@ export default {
         this.drawTable()
     },
     methods: {
-        execute(name, type, k, leastNum) {
-
-            // execSync('ls -l .')
-            // execSync("python3 /Users/lightning/Documents/毕业论文/代码/GCN/data_genenrate.py  --path="+name);
-            // execSync("python3 /Users/lightning/Documents/毕业论文/代码/GCN/model/train.py --k="+k +" --type="+type +" --leastNum="+leastNum);
-            // execSync("python3 /Users/lightning/Documents/毕业论文/代码/GCN/visualize/generate_json.py");
-            this.drawTable()
-            this.drawLine()
-        },
         drawTable() {
             this.tableData = require('/Users/lightning/Documents/毕业论文/代码/GCN/visualize/data.json')
             this.loading = false

@@ -30,7 +30,7 @@ import RelationGraph from '@/components/RelationGraph.vue'
 export default {
     data() {
         return {
-            active: 3,
+            active: 2,
         }
     },
     components: {
