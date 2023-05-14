@@ -12,12 +12,12 @@
                         min-width="250px">
                     </el-table-column>
                     <el-table-column
-                        prop="partition"
+                        prop="category"
                         label="分区"
                         min-width="250px">
                     </el-table-column>
                     <el-table-column
-                        prop="sampleNum"
+                        prop="symbolSize"
                         label="用例"
                         min-width="250px">
                     </el-table-column>
@@ -44,17 +44,34 @@ export default {
         return {
             activeName: 'first',
             loading: true,
-            categories: null,
-            links: null,
-            data: null,
-            table: null
+            categories_json: null,
+            links_json: null,
+            data_json: null,
+            tableData: null
         };
     },
     mounted() {
         this.drawLine()
+        this.drawTable()
     },
     methods: {
+        execute(name, type, k, leastNum) {
+
+            // execSync('ls -l .')
+            // execSync("python3 /Users/lightning/Documents/毕业论文/代码/GCN/data_genenrate.py  --path="+name);
+            // execSync("python3 /Users/lightning/Documents/毕业论文/代码/GCN/model/train.py --k="+k +" --type="+type +" --leastNum="+leastNum);
+            // execSync("python3 /Users/lightning/Documents/毕业论文/代码/GCN/visualize/generate_json.py");
+            this.drawTable()
+            this.drawLine()
+        },
+        drawTable() {
+            this.tableData = require('/Users/lightning/Documents/毕业论文/代码/GCN/visualize/data.json')
+            this.loading = false
+        },
         drawLine() {
+            this.categories_json = require('/Users/lightning/Documents/毕业论文/代码/GCN/visualize/categories.json');
+            this.links_json = require('/Users/lightning/Documents/毕业论文/代码/GCN/visualize/links.json');
+            this.data_json = require('/Users/lightning/Documents/毕业论文/代码/GCN/visualize/data.json');
             var myChart = this.$echarts.init(document.getElementById('graph'))
             var option = {
                 series: [
@@ -141,28 +158,29 @@ export default {
                             },
                         },
 
-                        categories: [
-                            { name: 1 },
-                            { name: 2 },
-                            { name: 3 },
-                            { name: 4 },
-                            { name: 5 },
-                            { name: 6 },
-                            { name: 7 },
-                            { name: 8 },
-                            { name: 9 },
-                            { name: 10 },
-                            { name: 11 },
-                            { name: 12 },
-                            { name: 13 },
-                            { name: 14 },
-                            { name: 15 },
-                            { name: 16 },
-                            { name: 17 },
-                            { name: 18 },
-                            { name: 19 },
-                            { name: 20 },
-                        ],
+                        // categories: [
+                        //     { name: 1 },
+                        //     { name: 2 },
+                        //     { name: 3 },
+                        //     { name: 4 },
+                        //     { name: 5 },
+                        //     { name: 6 },
+                        //     { name: 7 },
+                        //     { name: 8 },
+                        //     { name: 9 },
+                        //     { name: 10 },
+                        //     { name: 11 },
+                        //     { name: 12 },
+                        //     { name: 13 },
+                        //     { name: 14 },
+                        //     { name: 15 },
+                        //     { name: 16 },
+                        //     { name: 17 },
+                        //     { name: 18 },
+                        //     { name: 19 },
+                        //     { name: 20 },
+                        // ],
+                        categories: this.categories_json,
 
                         // 设置结点node的数据
                         // category: 类别序号，从0开始
@@ -171,78 +189,80 @@ export default {
                         // symbolSize: 结点图形的大小
                         // symbol: 类目节点标记图形，默然为圆形
                         // label: 标签样式
-                        data: [
-                            { name: 1, category: 1 },
-                            { name: 2, category: 2 },
-                            { name: 3, category: 3 },
-                            { name: 4, category: 4 },
-                            { name: 5, category: 5 },
-                            { name: 6, category: 6 },
-                            { name: 7, category: 7 },
-                            { name: 8, category: 8 },
-                            { name: 9, category: 9 },
-                            { name: 10, category: 10 },
-                            { name: 11, category: 11 },
-                            { name: 12, category: 12 },
-                            { name: 13, category: 13 },
-                            { name: 14, category: 14 },
-                            { name: 15, category: 15 },
-                            { name: 16, category: 16 },
-                            { name: 17, category: 17 },
-                            { name: 18, category: 18 },
-                            { name: 19, category: 19 },
-                            { name: 20, category: 20 },
-                        ],
-                        links: [
-                            { source: 1, target: 16 },
-                            { source: 2, target: 8 },
-                            { source: 3, target: 4 },
-                            { source: 4, target: 7 },
-                            { source: 5, target: 4 },
-                            { source: 6, target: 15 },
-                            { source: 7, target: 6 },
-                            { source: 8, target: 16 },
-                            { source: 9, target: 12 },
-                            { source: 10, target: 17 },
-                            { source: 11, target: 2 },
-                            { source: 12, target: 19 },
-                            { source: 13, target: 20 },
-                            { source: 14, target: 5 },
-                            { source: 15, target: 10 },
-                            { source: 16, target: 4 },
-                            { source: 17, target: 1 },
-                            { source: 18, target: 3 },
-                            { source: 19, target: 4 },
-                            { source: 20, target: 5 },
-                            { source: 1, target: 3 },
-                            { source: 2, target: 6 },
-                            { source: 3, target: 16 },
-                            { source: 4, target: 13 },
-                            { source: 5, target: 17 },
-                            { source: 6, target: 19 },
-                            { source: 7, target: 11 },
-                            { source: 8, target: 5 },
-                            { source: 9, target: 8 },
-                            { source: 10, target: 4 },
-                            { source: 11, target: 7 },
-                            { source: 12, target: 4 },
-                            { source: 13, target: 1 },
-                            { source: 14, target: 19 },
-                            { source: 15, target: 20 },
-                            { source: 16, target: 5 },
-                            { source: 17, target: 9 },
-                            { source: 18, target: 14 },
-                            { source: 19, target: 5 },
-                            { source: 20, target: 18 },
-                            { source: 0, target: 18 },
-                        ],
+
+                        // data: [
+                        //     { name: 1, category: 1 },
+                        //     { name: 2, category: 2 },
+                        //     { name: 3, category: 3 },
+                        //     { name: 4, category: 4 },
+                        //     { name: 5, category: 5 },
+                        //     { name: 6, category: 6 },
+                        //     { name: 7, category: 7 },
+                        //     { name: 8, category: 8 },
+                        //     { name: 9, category: 9 },
+                        //     { name: 10, category: 10 },
+                        //     { name: 11, category: 11 },
+                        //     { name: 12, category: 12 },
+                        //     { name: 13, category: 13 },
+                        //     { name: 14, category: 14 },
+                        //     { name: 15, category: 15 },
+                        //     { name: 16, category: 16 },
+                        //     { name: 17, category: 17 },
+                        //     { name: 18, category: 18 },
+                        //     { name: 19, category: 19 },
+                        //     { name: 20, category: 20 },
+                        // ],
+                        data: this.data_json,
+
+                        // links: [
+                        //     { source: 1, target: 16 },
+                        //     { source: 2, target: 8 },
+                        //     { source: 3, target: 4 },
+                        //     { source: 4, target: 7 },
+                        //     { source: 5, target: 4 },
+                        //     { source: 6, target: 15 },
+                        //     { source: 7, target: 6 },
+                        //     { source: 8, target: 16 },
+                        //     { source: 9, target: 12 },
+                        //     { source: 10, target: 17 },
+                        //     { source: 11, target: 2 },
+                        //     { source: 12, target: 19 },
+                        //     { source: 13, target: 20 },
+                        //     { source: 14, target: 5 },
+                        //     { source: 15, target: 10 },
+                        //     { source: 16, target: 4 },
+                        //     { source: 17, target: 1 },
+                        //     { source: 18, target: 3 },
+                        //     { source: 19, target: 4 },
+                        //     { source: 20, target: 5 },
+                        //     { source: 1, target: 3 },
+                        //     { source: 2, target: 6 },
+                        //     { source: 3, target: 16 },
+                        //     { source: 4, target: 13 },
+                        //     { source: 5, target: 17 },
+                        //     { source: 6, target: 19 },
+                        //     { source: 7, target: 11 },
+                        //     { source: 8, target: 5 },
+                        //     { source: 9, target: 8 },
+                        //     { source: 10, target: 4 },
+                        //     { source: 11, target: 7 },
+                        //     { source: 12, target: 4 },
+                        //     { source: 13, target: 1 },
+                        //     { source: 14, target: 19 },
+                        //     { source: 15, target: 20 },
+                        //     { source: 16, target: 5 },
+                        //     { source: 17, target: 9 },
+                        //     { source: 18, target: 14 },
+                        //     { source: 19, target: 5 },
+                        //     { source: 20, target: 18 },
+                        //     { source: 0, target: 18 },
+                        // ],
+                        links: this.links_json,
 
                     },
                 ],
             };
             myChart.setOption(option)
-
-            
         },
     }
 };

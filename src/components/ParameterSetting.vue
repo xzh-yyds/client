@@ -4,9 +4,9 @@
         <el-form ref="paraForm" :model="paraForm" :rules="rules" label-width="200px" size="big">
             <el-form-item label="输入模型聚类" prop="model">
                 <el-select v-model="paraForm.model" placeholder="请选择模型使用聚类">
-                    <el-option label="KMeans++聚类" value="kmeans"></el-option>
-                    <el-option label="MiniBatchKMeans聚类" value="minibatch"></el-option>
-                    <el-option label="ISODATA聚类" value="isodata"></el-option>
+                    <el-option label="KMeans++聚类" value=0></el-option>
+                    <el-option label="MiniBatchKMeans聚类" value=1></el-option>
+                    <el-option label="ISODATA聚类" value=2></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="输入划分微服务数量" prop="k">

@@ -61,39 +61,38 @@ export default {
             }
         },
         async submit() {
-            // let data = new FormData()
-            // data.append('name', this.$refs.upload.form.name)
-            // data.append('zip', this.$refs.upload.form.JavaList[0])
-            // data.append('jar', this.$refs.upload.form.JarList[0])
-            // data.append('type', this.$refs.parameter.paraForm.model)
-            // data.append('k', this.$refs.parameter.paraForm.k)
-            // data.append('leastNum', this.$refs.parameter.paraForm.leastNum)
+            let name = this.$refs.upload.form.name
+            let type = this.$refs.parameter.paraForm.model
+            let k = this.$refs.parameter.paraForm.k
+            let leastNum = this.$refs.parameter.paraForm.leastNum
+            let zip = this.$refs.upload.form.JavaList[0]
+            let jar = this.$refs.upload.form.JarList[0]
 
-            let data = {
-                'name': this.$refs.upload.form.name,
-                'zip': this.$refs.upload.form.JavaList[0],
-                'jar': this.$refs.upload.form.JarList[0],
-                'type': this.$refs.parameter.paraForm.model,
-                'k': this.$refs.parameter.paraForm.k,
-                'leastNum': this.$refs.parameter.paraForm.leastNum,
-            }
-            console.log(data)
+            // let basePath = '/Users/lightning/Documents/毕业论文/代码/GCN/data/project/' + name
+            // if (!fs.existsSync(basePath)) {
+            //     fs.mkdirSync(dir)
+            // }
 
-            let header = {
-                "Access-Control-Allow-Origin": "http://124.220.17.130",
-                "Access-Control-Allow-Methods": ["POST", "PUT", "PATCH", "GET", "DELETE", "OPTIONS"],
-                "Access-Control-Allow-Headers": ["Origin", "X-Api-Key", "X-Requested-With", "Content-Type", "Accept", "Authorization"]
-            }
+            // let jszipInstance = new JSZip()
 
-            await this.$http({
-                method: 'post',
-                url: '/identification',
-                data: data
-            }).then(res => {
-                console.log(res)
-            }).catch(err => {
-                console.log(err)
-            });
+            // fs.readFile(zip, function(err, data) {
+            //     if(!err) {
+            //         jszipInstance.loadAsync(data).forEach(function(filename) {
+            //             console.log(filename)
+            //             var content = jszipInstance.files[filename];
+            //             var dest = basePath + filename;
+            //             fs.writeFileSync(dest, content);
+            //         });
+            //     }
+            // });
+
+            name = 'guigu-oa'
+            type = 0
+            k = 5
+            leastNum = 5
+
+            this.active = 3
+            // this.$refs.result.execute(name, type, k, leastNum)
             
         },
     }

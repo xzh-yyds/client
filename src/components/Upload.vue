@@ -62,12 +62,12 @@ export default {
         beforeZipUpload(file) {
             let index = file.name.lastIndexOf('.')
             let suffix = file.name.substring(index+1).toLowerCase()
-            const type = (suffix === 'zip' || suffix === 'rar')
+            const type = (suffix === 'zip')
             const size = file.size / 1024 / 1024 < 500 // 500M
             console.log(suffix, file.name)
             
             if(!type) {
-                this.$message.error('上传文件只能是 zip 或 rar 格式!');
+                this.$message.error('上传文件只能是 zip 格式!');
             } else if(!size) {
                 this.$message.error('上传文件大小必须小于500M');
             }
